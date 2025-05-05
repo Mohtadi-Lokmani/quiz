@@ -26,9 +26,18 @@ const getQuestion = async (req, res) => {
 // Create a new question
 const createQuestion = async (req, res) => {
     const { text, quizId } = req.body;
-    const question = await Question.create({ text, quizId });
-    res.status(200).json(question);
-};
+    if (!text || !quizId) {
+      return res.status(400).json({ message: "Question text and quiz ID are required." });
+    }
+    try {
+      const question = await Question.create({ text, quizId });
+      res.status(201).json(question);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server error while creating the question." });
+    }
+  };
+  
 
 module.exports = {
     getQuestions,
