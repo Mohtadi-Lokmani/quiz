@@ -14,7 +14,6 @@ export default function Create() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-
   useEffect(() => {
     const fetchCategories = async () => {
       setLoading(true);
@@ -34,9 +33,8 @@ export default function Create() {
     fetchCategories();
   }, []);
 
-  
 
-  // Handle form submission
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -47,7 +45,6 @@ export default function Create() {
 
     
 
-  
     const newQuiz = {
       title,
       description,
@@ -62,12 +59,13 @@ export default function Create() {
         body: JSON.stringify(newQuiz),
       });
 
+      const data = await res.json();
+
       if (!res.ok) {
-        throw new Error('Failed to create quiz');
+        throw new Error(data.error || 'Failed to create quiz');
       }
 
-  
-      navigate('/question');
+      navigate(`/questions/${data._id}`);
     } catch (error) {
       setError(error.message);
     } finally {

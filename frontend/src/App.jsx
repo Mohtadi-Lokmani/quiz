@@ -21,9 +21,8 @@ function App() {
       <Route path="/signup" element={<Signup/>} />
       <Route path="/quiz" element={<Quizzes/>} />
       <Route path='/create-quiz' element={<Create/>} />
-      <Route path="/question/:id" element={<Quizzes/>} />
-      <Route path="/quiz/:id" element={<Quizzes/>} />
-      <Route path="/question" element={<Question/>} />
+      <Route path="/questions/:quizId" element={<Question />} />
+    
 
       
       </Routes>
