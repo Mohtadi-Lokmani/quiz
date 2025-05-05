@@ -4,7 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 export default function Create() {
-  const { quizId } = useParams(); // Get quizId from URL
+  const { quizId } = useParams(); 
   const [questionBlocks, setQuestionBlocks] = useState([
     { 
       question: "", 
@@ -14,7 +14,6 @@ export default function Create() {
   ]);
   const [quizDetails, setQuizDetails] = useState(null);
 
-  // Fetch quiz details when component mounts
   useEffect(() => {
     const fetchQuizDetails = async () => {
       try {
