@@ -1,0 +1,98 @@
+.footer {
+    background: linear-gradient(90deg, #2dacfb,  #0051ae);
+    padding: 60px 0 20px;
+    color: white;                                           
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .f-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .footer-col {
+    flex: 1 1 30%;
+    margin: 20px 0;
+  }
+  
+  .footer-col h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    position: relative;
+  }
+  
+  .footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    height: 2px;
+    width: 50px;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-col ul li {
+    margin: 10px 0;
+  }
+  
+  .footer-col ul li a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-col ul li a:hover {
+    color: #cecece; /* slightly lighter gold */
+  }
+  
+  .social-links {
+    margin-top: 20px;
+  }
+  
+  .social-links a {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 22px;
+    color: gold;
+    transition: color 0.3s ease;
+  }
+  
+  .social-links a:hover {
+    color: #f0c300;
+  }
+  
+  /* Specific Icon Hover Colors */
+  #i1:hover { color: #4267B2; } /* Facebook Blue */
+  #i2:hover { color: #E1306C; } /* Instagram Pink */
+  #i3:hover { color: #DB4437; } /* Google Red */
+  #i4:hover { color: #0077b5; } /* LinkedIn Blue */
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .row {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .footer-col {
+      flex: 1 1 100%;
+      margin-bottom: 30px;
+    }
+  }
+  

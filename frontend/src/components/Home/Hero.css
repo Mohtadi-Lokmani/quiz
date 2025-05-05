@@ -1,0 +1,91 @@
+.allhero {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 50px;
+    gap: 50px; 
+  }
+  
+  .heroback img {
+    width: 110%;
+    max-width: 500px;
+    height: auto;
+    margin: 0;
+  }
+  
+
+
+.hero-container {
+    text-align: center;
+    padding: 80px 20px;
+    
+  }
+
+  
+  .hero-subtitle {
+    font-size: 40px;
+    color: #666;
+  }
+  
+  .highlight {
+    color: #62B2F0; 
+    font-weight: bold;
+  }
+  
+  .hero-title {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #000;
+  }
+
+  .hero-desc {
+    font-size: 20px;
+    color: #444;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .signupbtn {
+    background-color: #62B2F0;
+    color: white;
+    font-size: 40px;
+    padding: 15px 30px;
+    margin-bottom: 50px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .signupbtn:hover {
+    background-color: #519fd7;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .allhero   {
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  

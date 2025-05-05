@@ -1,0 +1,197 @@
+.question-container{
+    
+        margin-top: 100px;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         
+         border: #079ad9 2px solid;
+         width: 1000px;
+         border-radius: 50px;
+        padding: 15px;
+        margin-left: 250px;
+       
+
+}
+.question-container h1
+{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: rgb(90, 98, 105);
+}
+.question-container label{
+    font-size: large;
+    font-weight: bold;
+    color: #425258;
+  
+    text-align: center;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;    
+}
+.question-container input[type="text"]{
+    width: 100%;
+    align-self: center;
+    padding: 10px;
+    border: 2px solid #079ad9;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bold;
+    width: 550px;
+
+    
+}
+.question-container textarea{
+    width: 100%;
+    align-self: center;
+    padding: 10px;
+    border: 2px solid #079ad9;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bold;
+    width: 550px;
+    color: #079ad9;
+}
+.question-container button[type="submit"]{
+    background-color: #079ad9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+   
+}
+
+
+  
+
+.container-box input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    
+   }
+   
+   .container-box {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+   }
+   
+
+   .checkmark {
+    margin-top: 10px;
+    margin-right: 10px;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 1.3em;
+    width: 1.3em;
+    background-color: #bebebe;
+    transition: all 0.3s;
+    border-radius: 5px;
+   }
+   
+   /* When the checkbox is checked, add a blue background */
+   .container-box input:checked ~ .checkmark {
+    background-color: #47da99;
+    animation: pop 0.5s;
+    animation-direction: alternate;
+   }
+   
+   /* Create the checkmark/indicator (hidden when not checked) */
+   .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+   }
+   
+   /* Show the checkmark when checked */
+   .container-box input:checked ~ .checkmark:after {
+    display: block;
+   }
+   
+   /* Style the checkmark/indicator */
+   .container-box .checkmark:after {
+    left: 0.45em;
+    top: 0.25em;
+    width: 0.25em;
+    height: 0.5em;
+    border: solid white;
+    border-width: 0 0.15em 0.15em 0;
+    transform: rotate(45deg);
+   }
+   
+   @keyframes pop {
+    0% {
+     transform: scale(1);
+    }
+   
+    50% {
+     transform: scale(0.9);
+    }
+   
+    100% {
+     transform: scale(1);
+    }
+   }
+  
+ 
+  .container-box .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+  
+.checkbox-container{
+    display: flex;
+   
+    
+
+ 
+
+}
+
+.btn-modifier {
+    
+ 
+    background-color: #079ad9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-modifier:hover {
+    background-color: #456ba0;
+}
+
+.btn-close {
+    
+    color: #e53935;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
