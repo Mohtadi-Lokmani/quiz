@@ -1,17 +1,19 @@
+const mongoose = require('mongoose');
 
-const mongoose = require("mongoose");
-
-const Schema = mongoose.Schema;
-
-const questionSchema = new Schema({
-  text: {
-    type: String,
-    required: true 
-    },
-  quizId: { 
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Quiz",
-    required: true },
+const questionSchema = new mongoose.Schema({
+  text: { type: String, required: true },
+  quizId: { type: mongoose.Schema.Types.ObjectId, ref: 'Quiz', required: true }
+}, {
+  timestamps: true,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
 });
 
-module.exports = mongoose.model("Question", questionSchema);
+
+questionSchema.virtual('options', {
+  ref: 'Option',
+  localField: '_id',
+  foreignField: 'questionId'
+});
+
+module.exports = mongoose.model('Question', questionSchema);

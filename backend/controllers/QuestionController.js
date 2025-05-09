@@ -3,9 +3,19 @@ const mongoose = require("mongoose");
 
 // Get all questions
 const getQuestions = async (req, res) => {
-    const questions = await Question.find({}).sort({ createdAt: -1 });
+  const { quizId } = req.query;
+
+  try {
+    const questions = await Question.find({ quizId }).populate('options');
     res.status(200).json(questions);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch questions with options' });
+  }
 };
+
+
+
 
 // Get a single question
 const getQuestion = async (req, res) => {

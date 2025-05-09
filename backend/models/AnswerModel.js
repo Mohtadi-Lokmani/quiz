@@ -2,12 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 const AnswertSchema = new Schema({
-  AnswerId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  AttempttId: {
+  AttemptId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Attempt",
     required: true,
