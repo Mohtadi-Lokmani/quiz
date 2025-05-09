@@ -4,11 +4,16 @@ import { useEffect, useState } from "react";
 import Create from "../components/Home/Create";
 import { useAuthContext } from "../hooks/useAuthContext";
 
+import { useNavigate } from "react-router-dom";
+
+
 export default function Quizzes() {
+  const navigate = useNavigate();
   const {user} = useAuthContext()
   const [quizzes, setQuizzes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+   
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -52,7 +57,9 @@ export default function Quizzes() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="quizzes-container">
+    <>
+    {user && (
+        <div className="quizzes-container">
       <h1 className="card-title">Popular Quizzes</h1>
       
       <div className="allcards">
@@ -70,9 +77,8 @@ export default function Quizzes() {
               </div>
               <div className="card__footer">
                 <div className="card__button">
-                <Link to={`/play/${quiz._id}`} className="quiz-card-link play-button">
-  Play
-</Link>
+                <button>Modify</button>
+                <button>Delete</button>
                 </div>
               </div>
             </div>
@@ -82,5 +88,11 @@ export default function Quizzes() {
       
       <Create />
     </div>
+    )}
+    {!user && (
+        navigate('/login')
+    )}
+    
+    </>
   );
 }
