@@ -14,7 +14,12 @@ const quizSchema = new Schema({
   categorie: {
     type:mongoose.Schema.Types.ObjectId,
     ref: "Categorie",
-  }
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   
 });
 module.exports = mongoose.model("Quiz", quizSchema);

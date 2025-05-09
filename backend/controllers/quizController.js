@@ -1,11 +1,15 @@
 const Quiz = require("../models/quizModel");
 const mongoose = require("mongoose");
 
+
 // Get all quizzes
 const getQuizs = async (req, res) => {
+  
     const quizzes = await Quiz.find({}).sort({ createdAt: -1 });
     res.status(200).json(quizzes);
 };
+
+
 
 // Get a single quiz
 const getQuiz = async (req, res) => {
@@ -32,7 +36,8 @@ const createQuiz = async (req, res) => {
     }
   
     try {
-      const quiz = await Quiz.create({ title, description, categorie });
+      const userId = req.user._id; 
+      const quiz = await Quiz.create({ title, description, categorie , userId });
       res.status(200).json(quiz);
     } catch (error) {
       res.status(400).json({ error: error.message });
@@ -43,4 +48,5 @@ module.exports = {
     getQuizs,
     getQuiz,
     createQuiz
+    
 };
