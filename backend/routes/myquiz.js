@@ -3,6 +3,8 @@ const router = express.Router()
 const{
     getMyQuizs,
     getMyQuiz,
+    modifyMyQuiz,
+    deleteMyQuiz,
     
     
 }= require("../controllers/myquizController")
@@ -19,6 +21,12 @@ router.get("/", getMyQuizs)
 //get a single Quiz
 router.get("/:id", getMyQuiz)
 
+
+//modify a single Quiz
+router.put("/:id", modifyMyQuiz)
+
+//delete a single Quiz
+router.delete("/:id", deleteMyQuiz)
 
 
 
