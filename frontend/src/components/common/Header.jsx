@@ -32,7 +32,7 @@ export default function Header() {
             <CustomLink to="/quiz" className="link">
               Quiz
             </CustomLink>
-            <CustomLink to="/quizzes" className="link">
+            <CustomLink to="/my-quiz" className="link">
               My Quizzes
             </CustomLink>
             {!user && (

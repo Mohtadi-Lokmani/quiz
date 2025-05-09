@@ -1,12 +1,12 @@
 header {
-    box-shadow: 0 1px 9px rgba(0, 0, 0, 0.4); 
+    /* box-shadow: 0 1px 9px rgba(0, 0, 0, 0.4);  */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background: linear-gradient(90deg, #6296f0, #62f0f0);
+    background-color: rgba(255, 255, 255);
+    /* background: linear-gradient(90deg, #6296f0, #62f0f0); */
     color: white;
-   
     z-index: 1000;
     position: fixed; 
     top: 0;
@@ -19,7 +19,7 @@ header {
   font-weight: bold;
   text-decoration: none;
   list-style: none;
-  color: white;
+  color: #6296f0;
 }
 
 .navheader ul {
@@ -33,7 +33,7 @@ header {
 
 .navheader a {
   text-decoration: none;
-  color: white;
+  color: #757575;
   font-weight: 600;
   transition: color 0.3s ease;
 }
@@ -73,12 +73,12 @@ header {
   border: 1px solid #62B2F0;
 }
 .Logout{
-  background-color: rgba(255, 255, 255, 0.2);
+  color: #62B2F0;
+  border: 1px solid #62B2F0;
+  background-color: rgba(106, 26, 26, 0.2);
   padding: 0.5rem 1rem;
   border-radius: 100px;
   transition: background-color 0.3s ease, color 0.3s ease;
-  border: 1px solid white;
-  color: white;
   cursor: pointer;
   font-size: 15px;
 }

@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import "./quizzes.css";
 import { useEffect, useState } from "react";
 import Create from "../components/Home/Create";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function Quizzes() {
+  const {user} = useAuthContext()
   const [quizzes, setQuizzes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,7 +16,10 @@ export default function Quizzes() {
       try {
         setLoading(true);
         const [quizzesRes, categoriesRes] = await Promise.all([
-          fetch("http://localhost:4000/api/quiz/"),
+          fetch("http://localhost:4000/api/myquiz/",{
+            headers: {'Authorization': `Bearer ${user.token}`},
+
+          }),
           fetch("http://localhost:4000/api/categorie/")
         ]);
 

@@ -1,0 +1,100 @@
+.play-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 70px;
+  }
+  
+  .quiz-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .quiz-description {
+    text-align: center;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+  }
+  
+  .questions-container {
+    margin-bottom: 30px;
+  }
+  
+  .question-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .question-card h3 {
+    margin-top: 0;
+    color: #34495e;
+  }
+  
+  .options-list {
+    margin-top: 15px;
+  }
+  
+  .option-item {
+    margin-bottom: 10px;
+  }
+  
+  .option-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .option-checkbox {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .option-text {
+    font-size: 16px;
+  }
+  
+  .submit-btn {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background-color: #2980b9;
+  }
+  
+  .submit-btn:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+  }
+  
+  .loading, .error {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 50px;
+  }
+  
+  .error {
+    color: #e74c3c;
+  }
+  
+  .score-display {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #27ae60;
+  }
