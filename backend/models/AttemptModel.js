@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 const AttemptSchema = new Schema({
-
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -12,11 +11,27 @@ const AttemptSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Quiz",
     required: true,
-    unique: true,
   },
   score: {
     type: Number,
     default: 0,
   },
-});
+  answers: [{
+    questionId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Question",
+      required: true
+    },
+    optionId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Option",
+      required: true
+    },
+    isCorrect: {
+      type: Boolean,
+      required: true
+    }
+  }]
+}, { timestamps: true });
+
 module.exports = mongoose.model("Attempt", AttemptSchema);

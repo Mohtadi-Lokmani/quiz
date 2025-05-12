@@ -4,6 +4,7 @@ const{
     getCategories,
     getCategorie,
     createCategorie,
+    deleteCategory,
 }= require("../controllers/categorieController")
 
 //get all categories
@@ -14,6 +15,8 @@ router.get("/:id", getCategorie)
 
 //create a new Categorie
 router.post("/",createCategorie)
+
+router.delete("/:id",deleteCategory)
 
 
 

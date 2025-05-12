@@ -6,4 +6,5 @@ const optionSchema = new mongoose.Schema({
   questionId: { type: mongoose.Schema.Types.ObjectId, ref: 'Question', required: true }
 });
 
-module.exports = mongoose.model('Option', optionSchema);
+
+module.exports = mongoose.models.Option || mongoose.model('Option', optionSchema);

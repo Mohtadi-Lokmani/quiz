@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+const mongoose = require('mongoose');
 
 
 //get all users
@@ -34,7 +35,14 @@ const loginUser = async (req, res) => {
     try {
         const user = await User.login(email, password);
         const token = createToken(user._id);
-        res.status(200).json({ name:user.name, email, token });
+        
+        res.status(200).json({
+            _id: user._id,  
+            name: user.name,
+            email: user.email,
+            role:user.role,
+            token
+          });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
@@ -51,5 +59,9 @@ const signupUser = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
+
+
+
+
 
 module.exports = { signupUser, loginUser ,getUser ,getUsers}; 

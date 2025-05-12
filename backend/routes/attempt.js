@@ -1,22 +1,14 @@
-const express =require("express")
-const router = express.Router()
-const{
-    
-    getAttempts,
-    getAttempt,
-    createAttempt,
-}= require("../controllers/AttemptController")
+const express = require('express');
+const router = express.Router();
+const { getAttempts, getAttempt, createAttempt } = require('../controllers/AttemptController');
 
-//get all categories
-router.get("/", getAttempts)
+// Get all attempts
+router.get("/", getAttempts);
 
-//get a single Categorie
-router.get("/:id", getAttempt)
+// Get a single attempt
+router.get("/:id", getAttempt);
 
-//create a new Categorie
-router.post("/",createAttempt)
-
-
+// Create a new attempt
+router.post("/", createAttempt);
 
 module.exports = router;
-

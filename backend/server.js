@@ -8,9 +8,9 @@ const quizRoutes = require('./routes/quiz')
 const userRoutes = require('./routes/user')
 const questionRoutes = require('./routes/question')
 const optionRoutes = require('./routes/option')
-const categorieRoutes = require('./routes/categorie')
+
 const attemptRoutes = require('./routes/attempt')
-const answerRoutes = require('./routes/answer')
+const categorieRoutes = require('./routes/categorie')
 const myquizRoutes = require('./routes/myquiz')
 
 
@@ -26,6 +26,7 @@ app.use(cors());
 
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next ) => {
     console.log(req.path,req.method)
@@ -40,7 +41,7 @@ app.use('/api/question', questionRoutes)
 app.use('/api/option', optionRoutes)
 app.use('/api/categorie', categorieRoutes)
 app.use('/api/attempt', attemptRoutes)
-app.use('/api/answer',answerRoutes)
+
 app.use('/api/myquiz', myquizRoutes)
 
 

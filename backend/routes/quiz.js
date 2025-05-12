@@ -4,7 +4,7 @@ const{
     getQuizs,
     getQuiz,
     createQuiz,
-    getQuizsByUser
+    deleteQuiz
     
 }= require("../controllers/quizController")
 
@@ -26,8 +26,7 @@ router.use(requireAuth)
 //create a new Quiz
 router.post("/",createQuiz)
 
-
-
+router.delete("/:id",deleteQuiz)
 
 
 module.exports = router;
