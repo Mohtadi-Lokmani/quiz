@@ -70,7 +70,7 @@ export default function Create() {
 
   const handleFinish = async () => {
     try {
-      // Validate all data
+    
       for (const [qIndex, block] of questionBlocks.entries()) {
         if (!block.question.trim()) {
           alert(`Question ${qIndex + 1} cannot be empty`);
@@ -89,8 +89,7 @@ export default function Create() {
           }
         }
       }
-
-      // Create questions and options
+      
       for (const block of questionBlocks) {
         const questionResponse = await axios.post("http://localhost:4000/api/question", {
           text: block.question,

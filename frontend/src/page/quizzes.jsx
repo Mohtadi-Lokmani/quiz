@@ -48,7 +48,7 @@ export default function Quizzes() {
 
   return (
     <div className="quizzes-container">
-      <h1 className="card-title">Popular Quizzes</h1>
+      <h1 className="card-title">All Quizzes</h1>
       
       <div className="allcards">
         {quizzes.map((quiz) => (

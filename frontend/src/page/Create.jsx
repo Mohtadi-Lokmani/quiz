@@ -14,6 +14,13 @@ export default function Create() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+ 
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
   useEffect(() => {
     const fetchCategories = async () => {
       setLoading(true);
@@ -33,39 +40,38 @@ export default function Create() {
     fetchCategories();
   }, []);
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!title || !description || !selectedCategory) {
       setError("Please fill in all fields");
       return;
     }
-  
+
     const newQuiz = {
       title,
       description,
       categorie: selectedCategory,
+      userId: user._id,
     };
-  
+
     try {
       setLoading(true);
       const res = await fetch('http://localhost:4000/api/quiz', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.token}` 
+          'Authorization': `Bearer ${user.token}`
         },
-        body: JSON.stringify(newQuiz),
+        body: JSON.stringify(newQuiz), 
       });
-  
+
       const data = await res.json();
-  
+
       if (!res.ok) {
         throw new Error(data.error || 'Failed to create quiz');
       }
-  
+
       navigate(`/questions/${data._id}`);
     } catch (error) {
       setError(error.message);
@@ -73,7 +79,6 @@ export default function Create() {
       setLoading(false);
     }
   };
-  
 
   return (
     <div className="create-container">

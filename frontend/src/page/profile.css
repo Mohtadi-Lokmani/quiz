@@ -1,0 +1,103 @@
+/* Profile.css */
+
+.profile-container {
+
+  max-width: 700px;
+  margin: 5rem auto 0px auto;
+  background: #5c9df2;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+.profile-container h2 {
+  margin-bottom: 1rem;
+  font-size: 25px;
+  color: #ffffff;
+ text-align: center;
+ margin-bottom: 50px;
+}
+
+.profile-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.profile-details p {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.profile-details strong {
+  color: #222;
+}
+
+.attempt-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.attempt-card {
+  background: #fdfdfd;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.attempt-card:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.attempt-info h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.attempt-info p {
+  margin: 0.25rem 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+
+@media (max-width: 600px) {
+  .profile-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dashboard-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.dashboard-link a {
+  display: inline-block;
+  background-color: #4CAF50; 
+  color: white;
+  padding: 12px 24px; 
+  font-size: 16px;
+  font-weight: bold; 
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dashboard-link a:hover {
+  background-color: #45a049; 
+  transform: translateY(-2px); 
+}
+
+
+.dashboard-link a:focus {
+  outline: 3px solid #ffeb3b; 
+  outline-offset: 2px;
+}

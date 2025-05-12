@@ -44,7 +44,7 @@ export default function Header() {
             {user && (
               <>
               <div className="user-info">
-                <span className="user-name">{user.name}</span>
+               <Link to="/profile"> <span className="user-name">{user.name}</span></Link>
                 <FontAwesomeIcon icon={faCircleUser} className="user-icon" />
                
                 </div>

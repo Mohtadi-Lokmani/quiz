@@ -57,7 +57,7 @@
   }
   
   .footer-col ul li a:hover {
-    color: #cecece; /* slightly lighter gold */
+    color: #cecece; 
   }
   
   .social-links {
@@ -76,13 +76,13 @@
     color: #f0c300;
   }
   
-  /* Specific Icon Hover Colors */
-  #i1:hover { color: #4267B2; } /* Facebook Blue */
-  #i2:hover { color: #E1306C; } /* Instagram Pink */
-  #i3:hover { color: #DB4437; } /* Google Red */
-  #i4:hover { color: #0077b5; } /* LinkedIn Blue */
+
+  #i1:hover { color: #4267B2; } 
+  #i2:hover { color: #E1306C; }
+  #i3:hover { color: #DB4437; } 
+  #i4:hover { color: #0077b5; } 
   
-  /* Responsive Design */
+
   @media (max-width: 768px) {
     .row {
       flex-direction: column;

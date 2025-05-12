@@ -16,19 +16,19 @@ function Footer() {
             </ul>
           </div>
           <div className="footer-col">
-            <h4>Contactez-nous</h4>
+            <h4>Contact us</h4>
             <ul>
-              <li><a href="#">something</a></li>
-              <li><a href="#">something</a></li>
-              <li><a href="#">something</a></li>
+              <li><a href="#">mohtadilokmani8@gmail.com</a></li>
+              <li><a href="#"></a>eyayoussef344@gmail.com</li>
+              <li><a href="#">salmahrabi91@gmail.com</a></li>
             </ul>
           </div>
           <div className="footer-col">
-            <h4>Suivez-nous</h4>
+            <h4>follow us</h4>
             <div className="social-links">
-				<i className="fa-brands fa-facebook" id="i1" ></i>
-                <i className="fa-brands fa-instagram" id="i2"></i>
-                <i className="fa-brands fa-linkedin" id="i4"></i>
+				<i className="fa-brands fa-facebook" >lokmani mohtadi</i><br />
+                <i className="fa-brands fa-instagram" >eya youssef</i><br />
+                <i className="fa-brands fa-linkedin" >salma hrabi</i> <br />
             </div>
           </div>
         </div>

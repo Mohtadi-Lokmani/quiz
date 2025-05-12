@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 import './App.css'
-
+import ProtectedRoute from "../../../Horizon with backend/client/src/components/ProtectedRoute"
 import Home from "./page/Home"
 import Login from "./page/Login"
 import Signup from "./page/Signup"
@@ -9,8 +9,11 @@ import Quizzes from "./page/quizzes"
 import Question from "./page/Question"
 import Create from "./page/Create"
 import Play from "./page/Play"
-import Score from "./page/Score"
+
 import MyQuiz from "./page/MyQuiz"
+import Results from "./page/results"
+import Profile from "./page/Profile"
+import Dashboard from "./page/dashboard"
 
 function App() {
   
@@ -25,14 +28,25 @@ function App() {
       <Route path='/create-quiz' element={<Create/>} />
       <Route path="/questions/:quizId" element={<Question />} />
       <Route path="/play/:quizId" element={<Play />} />
-      <Route path="/score" element={<Score />} />
       <Route path="/my-quiz" element={<MyQuiz />} />
+      <Route path="/results/:id" element={<Results />} />
+      <Route path="/profile" element={<Profile />} />
+       <Route path="/dashboard/*" element={
+    <ProtectedRoute>
+      <Dashboard />
+    </ProtectedRoute>}
+      />
+        </Routes>
+     
+
+
+
 
 
     
 
       
-      </Routes>
+ 
      
     </>
   )
