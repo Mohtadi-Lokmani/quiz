@@ -62,6 +62,21 @@ const signupUser = async (req, res) => {
 
 
 
+const deleteUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const userToDelete = await User.findById(id);
+    if (!userToDelete) return res.status(404).json({ error: 'User not found' });
+    if (userToDelete.role === 'admin') {
+        return res.status(403).json({ error: 'Cannot delete admin user' });
+    }
+    const user = await User.findByIdAndDelete(id);
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.status(200).json({ message: 'User deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete user' });
+  }
+};
 
 
-module.exports = { signupUser, loginUser ,getUser ,getUsers}; 
+module.exports = { signupUser, loginUser ,getUser ,getUsers , deleteUser}; 

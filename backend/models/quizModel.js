@@ -5,11 +5,11 @@ const quizSchema = new Schema({
   title: {
     type: String,
     required: true,
+   
   },
   description: {
     type: String,
     required: true,
-   
   },
   categorie: {
     type:mongoose.Schema.Types.ObjectId,

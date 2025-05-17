@@ -8,12 +8,11 @@ const quizRoutes = require('./routes/quiz')
 const userRoutes = require('./routes/user')
 const questionRoutes = require('./routes/question')
 const optionRoutes = require('./routes/option')
-
 const attemptRoutes = require('./routes/attempt')
 const categorieRoutes = require('./routes/categorie')
 const myquizRoutes = require('./routes/myquiz')
-
-
+const myattemptRoutes = require('./routes/myattempt')
+const userattemptRoutes =require('./routes/userAttempt')
 
 
 
@@ -41,8 +40,10 @@ app.use('/api/question', questionRoutes)
 app.use('/api/option', optionRoutes)
 app.use('/api/categorie', categorieRoutes)
 app.use('/api/attempt', attemptRoutes)
-
 app.use('/api/myquiz', myquizRoutes)
+app.use('/api/myattempt', myattemptRoutes)
+app.use('/api/userattempt', userattemptRoutes)
+
 
 
 

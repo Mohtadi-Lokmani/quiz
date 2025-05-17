@@ -30,8 +30,34 @@ const createOption = async (req, res) => {
     res.status(200).json(option);
 };
 
+ 
+  // Modify an existing option
+const modifyOption = async (req, res) => {
+  const { id } = req.params;
+  const {  text, isCorrect, } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: 'Invalid option ID' });
+  }
+
+  try {
+    const option = await Option.findByIdAndUpdate(id, {  text, isCorrect, }, { new: true });
+    if (!option) {
+      return res.status(404).json({ error: 'option not found' });
+    }
+
+    res.status(200).json(option);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error updating question" });
+  }
+};
+
+
+
 module.exports = {
     getOptions,
     getOption,
-    createOption
+    createOption,
+    modifyOption
 };

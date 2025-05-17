@@ -25,7 +25,8 @@ const AttemptSchema = new Schema({
     optionId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Option",
-      required: true
+      required: true,
+      default : null
     },
     isCorrect: {
       type: Boolean,

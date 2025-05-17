@@ -6,6 +6,7 @@ const{
     loginUser,
     getUser,
     getUsers,
+    deleteUser
     
 }= require("../controllers/userController")
 
@@ -22,6 +23,8 @@ router.post('/login',loginUser)
 
 // signup user
 router.post('/signup',signupUser)
+
+router.delete('/:id', deleteUser);
 
 
 
