@@ -2,25 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import '../dashboard.css';
 
+// ✅ Move Modal OUTSIDE the Categories component
+const Modal = ({ onClose, children }) => {
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <button className="modal-close-btn" onClick={onClose}>X</button>
+        {children}
+      </div>
+    </div>
+  );
+};
+
 export default function Categories() {
   const { user } = useAuthContext();
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showAddModal, setShowAddModal] = useState(false);
-  const [newCategory, setNewCategory] = useState({
-    label: '',
-    icon: ''
-  });
+  const [newCategory, setNewCategory] = useState({ label: '', icon: '' });
 
   useEffect(() => {
     const fetchCategories = async () => {
       setLoading(true);
       try {
         const response = await fetch("http://localhost:4000/api/categorie/");
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
+        if (!response.ok) throw new Error("Failed to fetch data");
         const data = await response.json();
         setCategories(data);
       } catch (err) {
@@ -44,9 +51,7 @@ export default function Categories() {
         body: JSON.stringify(newCategory)
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to add category");
-      }
+      if (!response.ok) throw new Error("Failed to add category");
 
       const data = await response.json();
       setCategories([...categories, data]);
@@ -59,7 +64,6 @@ export default function Categories() {
 
   const handleDeleteCategory = async (id) => {
     if (!window.confirm("Are you sure you want to delete this category?")) return;
-
     try {
       const response = await fetch(`http://localhost:4000/api/categorie/${id}`, {
         method: 'DELETE',
@@ -68,9 +72,7 @@ export default function Categories() {
         }
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to delete category");
-      }
+      if (!response.ok) throw new Error("Failed to delete category");
 
       setCategories((prevCategories) =>
         prevCategories.filter((category) => category._id !== id)
@@ -80,28 +82,12 @@ export default function Categories() {
     }
   };
 
-  const Modal = ({ onClose, children }) => {
-    return (
-      <div className="modal-overlay">
-        <div className="modal-content">
-          <button className="modal-close-btn" onClick={onClose}>X</button>
-          {children}
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className="allcat">
       <div className="dashboard-section">
         <div className="section-header">
           <h2>Categories</h2>
-          <button
-            className="add-btn"
-            onClick={() => setShowAddModal(true)}
-          >
-            Add Category
-          </button>
+          <button className="add-btn" onClick={() => setShowAddModal(true)}>Add Category</button>
         </div>
 
         {error && <p className="error">{error}</p>}
@@ -116,12 +102,7 @@ export default function Categories() {
                   <h3 className="category-label">{category.label}</h3>
                 </div>
                 <div className="category-actions">
-                  <button
-                    className="delete-btn"
-                    onClick={() => handleDeleteCategory(category._id)}
-                  >
-                    Delete
-                  </button>
+                  <button className="delete-btn" onClick={() => handleDeleteCategory(category._id)}>Delete</button>
                 </div>
               </div>
             ))}
@@ -151,9 +132,7 @@ export default function Categories() {
                 />
               </div>
               <div className="form-actions">
-                <button type="button" onClick={() => setShowAddModal(false)}>
-                  Cancel
-                </button>
+                <button type="button" onClick={() => setShowAddModal(false)}>Cancel</button>
                 <button type="submit">Add Category</button>
               </div>
             </form>

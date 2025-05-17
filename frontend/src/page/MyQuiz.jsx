@@ -1,11 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./quizzes.css";
 import "./myquiz.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import Create from "../components/Home/Create";
 import { useAuthContext } from "../hooks/useAuthContext";
 
+
 export default function Quizzes() {
+ const {quizId}=useParams();
   const navigate = useNavigate();
   const { user } = useAuthContext();
   const [quizzes, setQuizzes] = useState([]);
@@ -123,7 +125,7 @@ export default function Quizzes() {
 
   return (
     <div className="quizzes-container">
-      <h1 className="card-title">Popular Quizzes</h1>
+      <h1 className="card-title">All Quizzes</h1>
       
       <div className="allcards">
         {quizzes.map((quiz) => (
@@ -140,6 +142,11 @@ export default function Quizzes() {
               </div>
               <div className="card__footer">
                 <div className="card__buttonn">
+
+               <button onClick={() => navigate(`/quiz-attempts/${quiz._id}`)} className="see">
+  See People
+</button>
+
                   <button onClick={() => handleEdit(quiz)} className="mod">Modify</button>
                   <button onClick={() => handleDelete(quiz._id)} className="del">Delete</button>
                 </div>
@@ -184,6 +191,11 @@ export default function Quizzes() {
                 ))}
               </select>
               <button type="submit">Update</button>
+           {formData._id && (
+  <Link to={`/modify-question/${formData._id}`} className="link-modify-question">
+    Modify Question
+  </Link>
+)}
             </form>
           </div>
         </div>

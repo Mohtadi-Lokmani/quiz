@@ -1,28 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import { useAuthContext } from '../../hooks/useAuthContext';
-import '../Dashboard.css';
 
-export default function AllQuizzes() {
+import '../Dashboard.css';
+import { Link, useNavigate, useParams } from "react-router-dom";
+import "../myquiz.css";
+import { useEffect, useState} from "react";
+import Create from "../../components/Home/Create";
+import { useAuthContext } from "../../hooks/useAuthContext";
+
+
+export default function Quizzes() {
+ const {quizId}=useParams();
+  const navigate = useNavigate();
   const { user } = useAuthContext();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [quizzes, setQuizzes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [formData, setFormData] = useState({
-    _id: '',
-    title: '',
-    description: '',
+  const [formData, setFormData] = useState({ 
+    title: '', 
+    description: '', 
     categorie: ''
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  useEffect(() => {
+    if (!user) return;
+    
     const fetchData = async () => {
       try {
         setLoading(true);
         const [quizzesRes, categoriesRes] = await Promise.all([
-          fetch("http://localhost:4000/api/quiz/"),
-          fetch("http://localhost:4000/api/categorie/"),
+          fetch("http://localhost:4000/api/myquiz/", {
+            headers: {'Authorization': `Bearer ${user.token}`},
+          }),
+          fetch("http://localhost:4000/api/categorie/", {
+            headers: {'Authorization': `Bearer ${user.token}`},
+          })
         ]);
 
         if (!quizzesRes.ok || !categoriesRes.ok) {
@@ -42,36 +60,66 @@ export default function AllQuizzes() {
     };
 
     fetchData();
-  }, []);
+  }, [user]); 
 
   const getCategoryIcon = (categoryId) => {
-    const category = categories.find((cat) => cat._id === categoryId);
-    return category ? category.icon : 'No icon';
+    const category = categories.find(cat => cat._id === categoryId);
+    return category?.icon || '';
   };
 
   const handleEdit = (quiz) => {
-    setFormData({
-      _id: quiz._id,
-      title: quiz.title,
-      description: quiz.description,
-      categorie: quiz.categorie,
-    });
+    setFormData(quiz);
     setIsModalOpen(true);
   };
 
-  const handleDelete = async (quizId) => {
-    if (!window.confirm("Are you sure you want to delete this Quiz?")) return;
-    const res = await fetch(`http://localhost:4000/api/quiz/${quizId}`, {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${user.token}`,
-      },
-    });
+  const handleDelete = async (id) => {
+    if (window.confirm('Delete this quiz?')) {
+      try {
+        const res = await fetch(`http://localhost:4000/api/myquiz/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${user.token}`
+          }
+        });
 
-    if (res.ok) {
-      setQuizzes((prev) => prev.filter((quiz) => quiz._id !== quizId));
+        if (res.ok) {
+          setQuizzes(prev => prev.filter(q => q._id !== id));
+        } else {
+          throw new Error("Failed to delete quiz");
+        }
+      } catch (err) {
+        setError(err.message);
+      }
     }
   };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(`http://localhost:4000/api/myquiz/${formData._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (res.ok) {
+        const updated = await res.json();
+        setQuizzes(prev => prev.map(q => q._id === updated._id ? updated : q));
+        setIsModalOpen(false);
+      } else {
+        throw new Error("Failed to update quiz");
+      }
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  if (!user) {
+    return null; 
+  }
 
   if (loading) return <div>Loading quizzes...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -79,7 +127,7 @@ export default function AllQuizzes() {
   return (
     <div className="quizzes-container">
       <h1 className="card-title">Popular Quizzes</h1>
-
+      
       <div className="allcards">
         {quizzes.map((quiz) => (
           <div className="card" key={quiz._id}>
@@ -95,6 +143,11 @@ export default function AllQuizzes() {
               </div>
               <div className="card__footer">
                 <div className="card__buttonn">
+
+               <button onClick={() => navigate(`/quiz-attempts/${quiz._id}`)} className="see">
+  See People
+</button>
+
                   <button onClick={() => handleEdit(quiz)} className="mod">Modify</button>
                   <button onClick={() => handleDelete(quiz._id)} className="del">Delete</button>
                 </div>
@@ -103,54 +156,47 @@ export default function AllQuizzes() {
           </div>
         ))}
       </div>
+      
+      <Create />
 
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-popup">
             <button className="btn-close" onClick={() => setIsModalOpen(false)}>×</button>
             <h2>Modify Quiz</h2>
-            <form
-              onSubmit={async (e) => {
-                e.preventDefault();
-                const res = await fetch(`http://localhost:4000/api/myquiz/${formData._id}`, {
-                  method: 'PUT',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${user.token}`,
-                  },
-                  body: JSON.stringify(formData),
-                });
-
-                if (res.ok) {
-                  const updated = await res.json();
-                  setQuizzes((prev) => prev.map((q) => (q._id === updated._id ? updated : q)));
-                  setIsModalOpen(false);
-                }
-              }}
-            >
+            <form onSubmit={handleUpdate}>
               <label>Title</label>
-              <input
-                type="text"
-                value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+              <input 
+                type="text" 
+                value={formData.title} 
+                onChange={(e) => setFormData({...formData, title: e.target.value})} 
+                required
               />
               <label>Description</label>
-              <textarea
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              <textarea 
+                value={formData.description} 
+                onChange={(e) => setFormData({...formData, description: e.target.value})}
+                required
               ></textarea>
               <label>Category</label>
-              <select
-                value={formData.categorie}
-                onChange={(e) => setFormData({ ...formData, categorie: e.target.value })}
+              <select 
+                value={formData.categorie} 
+                onChange={(e) => setFormData({...formData, categorie: e.target.value})}
+                required
               >
-                {categories.map((cat) => (
+                <option value="">Select a category</option>
+                {categories.map(cat => (
                   <option value={cat._id} key={cat._id}>
-                    {cat.icon}
+                    {cat.icon} {cat.label}
                   </option>
                 ))}
               </select>
               <button type="submit">Update</button>
+           {formData._id && (
+  <Link to={`/modify-question/${formData._id}`} className="link-modify-question">
+    Modify Question
+  </Link>
+)}
             </form>
           </div>
         </div>

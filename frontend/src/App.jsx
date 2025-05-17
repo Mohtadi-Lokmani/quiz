@@ -14,6 +14,9 @@ import MyQuiz from "./page/MyQuiz"
 import Results from "./page/results"
 import Profile from "./page/Profile"
 import Dashboard from "./page/dashboard"
+import ModifyQuestion from "./page/ModifyQuestion"
+import QuizAttempts from "./page/QuizAttempt"
+
 
 function App() {
   
@@ -31,12 +34,16 @@ function App() {
       <Route path="/my-quiz" element={<MyQuiz />} />
       <Route path="/results/:id" element={<Results />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/modify-question/:quizId" element={<ModifyQuestion />} />
+      <Route path="/quiz-attempts/:quizId" element={<QuizAttempts />} />
+
        <Route path="/dashboard/*" element={
     <ProtectedRoute>
       <Dashboard />
     </ProtectedRoute>}
       />
         </Routes>
+        
      
 
 

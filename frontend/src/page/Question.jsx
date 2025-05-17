@@ -1,9 +1,10 @@
 import "./question.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 
 export default function Create() {
+  const navigate = useNavigate();
   const { quizId } = useParams(); 
   const [questionBlocks, setQuestionBlocks] = useState([
     { 
@@ -105,6 +106,7 @@ export default function Create() {
             questionId: questionId
           });
         }
+        navigate('/quiz');
       }
 
       alert("Questions and answers saved successfully!");

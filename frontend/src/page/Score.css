@@ -1,45 +1,83 @@
-.allscore{
+.allscore {
   margin-top: 90px;
   text-align: center;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .result-container {
   max-width: 600px;
-  margin: 2rem auto;
-  padding: 1rem;
-  border: 2px solid rgb(35, 32, 218);
-  border-radius: 10px;
-  background-color: #f0faff;
+  margin: 2.5rem auto;
+  padding: 2rem 2.5rem;
+  border: 2px solid #5728e8;
+  border-radius: 20px;
+  background-color: #f9faff;
+  box-shadow: 0 8px 25px rgba(87, 40, 232, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+.result-container:hover {
+  box-shadow: 0 12px 35px rgba(87, 40, 232, 0.3);
 }
 
 .result-title {
-  text-align: center;
-  color: rgb(91, 32, 218);
-}
-li{
-  list-style: none;
-}
-.answers-list {
-  margin-top: 1.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #5728e8;
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  user-select: none;
 }
 
-.answer-item {
+.answers-list {
+  margin-top: 1.8rem;
+  padding: 0;
+}
+
+.result-container li {
+  list-style: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2e3440;
   margin-bottom: 1rem;
+  border-radius: 10px;
+  padding: 12px 18px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .answer-item.correct {
-  background-color: #e6ffe6;
-  padding: 0.5rem;
-  border-radius: 5px;
+  background-color: #d4f7d4;
+  color: #2e7d32;
+  border-left: 6px solid #4caf50;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
 }
 
 .answer-item.incorrect {
-  background-color: #ffe6e6;
-  padding: 0.5rem;
-  border-radius: 5px;
+  background-color: #ffd6d6;
+  color: #c62828;
+  border-left: 6px solid #f44336;
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
 }
 
 .error {
-  color: red;
-  text-align: center;
+  color: #d32f2f;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  user-select: none;
+}
+
+@media (max-width: 650px) {
+  .result-container {
+    margin: 2rem 1rem;
+    padding: 1.5rem 1.8rem;
+  }
+  .result-title {
+    font-size: 1.6rem;
+  }
+  .result-container li {
+    font-size: 1rem;
+    padding: 10px 14px;
+  }
 }

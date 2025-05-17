@@ -1,29 +1,29 @@
-import { Link } from "react-router-dom"
-import './Login.css'
-import { useState } from "react"
-import { useLogin } from "../hooks/useLogin"
-import { useAuthContext } from "../hooks/useAuthContext"
+import { Link, useNavigate } from "react-router-dom";
+import './Login.css';
+import { useState, useEffect } from "react";
+import { useLogin } from "../hooks/useLogin";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function Login() {
-  const {userr} = useAuthContext()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const {login, error, isLoading} = useLogin()
+  const navigate = useNavigate();
+  const { user } = useAuthContext();  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { login, error, isLoading } = useLogin();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    await login(email, password)
-
-  }
-  
-
+    e.preventDefault();
+    await login(email, password);
+  };
 
   return (
-
-
-
-<>
- <div className="all">
+    <div className="all">
       <div className="aside">
         <h1 className="aside-title">Welcome to Quizzaroo</h1>
         <p className="aside-text">Join us and test your knowledge with fun quizzes!</p>
@@ -43,17 +43,12 @@ function Login() {
           </div>
           <button type="submit" className="login-button" disabled={isLoading}>Login</button>
         </form>
+      
         <p className="login-text">Don't have an account? <Link to="/signup" className="login-link">Sign Up</Link></p>
         {error && <div className="error">{error}</div>}
       </div>
     </div>
-
-    
-   
-    </>
-    
-    
-  )
+  );
 }
 
-export default Login
+export default Login;
