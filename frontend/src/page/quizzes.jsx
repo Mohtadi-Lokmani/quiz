@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./quizzes.css";
 import { useEffect, useState } from "react";
 import Create from "../components/Home/Create";
+import Footer from "../components/common/Footer";
 
 export default function Quizzes() {
   const [quizzes, setQuizzes] = useState([]);
@@ -37,10 +38,8 @@ export default function Quizzes() {
     fetchData();
   }, []);
 
-  const getCategoryIcon = (categoryId) => {
-    const category = categories.find(cat => cat._id === categoryId);
-    return ( category.icon)
-    
+  const getQuizzesByCategory = (categoryId) => {
+    return quizzes.filter(quiz => quiz.categorie === categoryId);
   };
 
   if (loading) return <div>Loading quizzes...</div>;
@@ -49,33 +48,47 @@ export default function Quizzes() {
   return (
     <div className="quizzes-container">
       <h1 className="card-title">All Quizzes</h1>
-      
-      <div className="allcards">
-        {quizzes.map((quiz) => (
-          <div className="card" key={quiz._id}>
-            <div className="card__shine"></div>
-            <div className="card__glow"></div>
-            <div className="card__content">
-              <div className="card__image">
-                <p>{getCategoryIcon(quiz.categorie)}</p>
-              </div>
-              <div className="card__text">
-                <p className="card__title">{quiz.title}</p>
-                <p className="card__description">{quiz.description}</p>
-              </div>
-              <div className="card__footer">
-                <div className="card__button">
-                <Link to={`/play/${quiz._id}`} className="quiz-card-link play-button">
-  Play
-</Link>
+
+      {categories.map(category => {
+        const quizzesInCategory = getQuizzesByCategory(category._id);
+        if (quizzesInCategory.length === 0) return null;
+
+        return (
+          <div key={category._id} className="category-section">
+            <h2 className="category-title">
+              {category.icon} {category.label}
+            </h2>
+
+            <div className="allcards">
+              {quizzesInCategory.map(quiz => (
+                <div className="card" key={quiz._id}>
+                  <div className="card__shine"></div>
+                  <div className="card__glow"></div>
+                  <div className="card__content">
+                    <div className="card__image">
+                      <p>{category.icon}</p>
+                    </div>
+                    <div className="card__text">
+                      <p className="card__title">{quiz.title}</p>
+                      <p className="card__description">{quiz.description}</p>
+                    </div>
+                    <div className="card__footer">
+                      <div className="card__button">
+                        <Link to={`/play/${quiz._id}`} className="quiz-card-link play-button">
+                          Play
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
-      
+        );
+      })}
+
       <Create />
+      <Footer />
     </div>
   );
 }

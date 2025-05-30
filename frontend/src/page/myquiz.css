@@ -35,6 +35,8 @@
   transition: color 0.25s ease;
 }
 
+
+
 .btn-close:hover {
   color: #ffd700;
 }
@@ -108,71 +110,13 @@
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Buttons */
-.card__buttonn {
-  height: 50px;
-  background-color: #ffffff;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #079ad9;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-left: 0px;
-  margin-bottom: 30px;
-  font-weight: 600;
-  user-select: none;
-}
 
 .card__buttonn:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(7, 154, 217, 0.4);
 }
 
-/* Modify Button */
-.mod {
-  width: 75px;
-  height: 50px;
-  background-color: #ffde59;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #333;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  font-weight: 700;
-  user-select: none;
-  
-}
 
-.mod:hover {
-  background-color: #bfaf15;
-  transform: scale(1.05);
-  color: #222;
-}
-
-/* Delete Button */
-.del {
-  width: 75px;
-  height: 50px;
-  background-color: #ff5252;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  font-weight: 700;
-  user-select: none;
-}
-
-.del:hover {
-  background-color: #b01414;
-  transform: scale(1.05);
-}
 
 .link-modify-question {
   color: #079ad9;
@@ -188,15 +132,54 @@
 }
 
 
-.see{
-  position:absolute;
-  margin-top: -100px;
-  margin-left: 0px;
-  padding: 10px 30px;
- border: #005f99 solid 1px;
- background-color: #ffffff;
- border-radius: 15px;
- color: #005f99;
- cursor: pointer;
+.see,
+.mod,
+.del {
+  padding: 8px 16px;
+  margin: -2px;
+  font-size: 0.95rem;
+  align-self: center;
+  align-items: center;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 
-} 
+  color: #fff;
+  
+}
+
+.see {
+  margin-left: 10px;
+  background-color: #4f8cff;
+}
+
+.see:hover {
+  background-color: #0056b3;
+ 
+}
+
+.mod {
+   margin-left: 25px;
+  background-color: #28a745;
+}
+
+.mod:hover {
+  background-color: #1e7e34;
+ 
+}
+.del {
+     margin-left: 25px;
+  background-color: #dc3545;
+}
+
+.del:hover {
+  background-color: #a71d2a;
+  
+}
+.quiz-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}

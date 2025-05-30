@@ -24,11 +24,7 @@ function Login() {
 
   return (
     <div className="all">
-      <div className="aside">
-        <h1 className="aside-title">Welcome to Quizzaroo</h1>
-        <p className="aside-text">Join us and test your knowledge with fun quizzes!</p>
-        <p className="aside-text">Login to access your quizzes and track your progress.</p>
-      </div>
+      
       <div className="login-container">
         <h1 className="login-title">Quizzaroo</h1>
         <h1 className="login-log">Login</h1>

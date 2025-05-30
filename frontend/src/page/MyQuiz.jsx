@@ -4,6 +4,7 @@ import "./myquiz.css";
 import { useEffect, useState} from "react";
 import Create from "../components/Home/Create";
 import { useAuthContext } from "../hooks/useAuthContext";
+import Footer from "../components/common/Footer";
 
 
 export default function Quizzes() {
@@ -141,15 +142,14 @@ export default function Quizzes() {
                 <p className="card__description">{quiz.description}</p>
               </div>
               <div className="card__footer">
-                <div className="card__buttonn">
+             
+             <div className="quiz-actions">
+  <button onClick={() => navigate(`/quiz-attempts/${quiz._id}`)} className="see">See People</button>
+  <button onClick={() => handleEdit(quiz)} className="mod">Modify</button>
+  <button onClick={() => handleDelete(quiz._id)} className="del">Delete</button>
+</div>
 
-               <button onClick={() => navigate(`/quiz-attempts/${quiz._id}`)} className="see">
-  See People
-</button>
-
-                  <button onClick={() => handleEdit(quiz)} className="mod">Modify</button>
-                  <button onClick={() => handleDelete(quiz._id)} className="del">Delete</button>
-                </div>
+               
               </div>
             </div>
           </div>
@@ -177,7 +177,7 @@ export default function Quizzes() {
                 onChange={(e) => setFormData({...formData, description: e.target.value})}
                 required
               ></textarea>
-              <label>Category</label>
+                <label>Category</label>
               <select 
                 value={formData.categorie} 
                 onChange={(e) => setFormData({...formData, categorie: e.target.value})}
@@ -200,6 +200,7 @@ export default function Quizzes() {
           </div>
         </div>
       )}
+      <Footer></Footer>
     </div>
   );
 }

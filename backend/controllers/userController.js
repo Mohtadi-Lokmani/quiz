@@ -1,4 +1,6 @@
 const User = require("../models/userModel");
+const Quiz = require("../models/QuizModel");
+const Attempt = require("../models/AttemptModel");
 const jwt = require("jsonwebtoken");
 const mongoose = require('mongoose');
 
@@ -61,22 +63,56 @@ const signupUser = async (req, res) => {
 };
 
 
-
 const deleteUser = async (req, res) => {
   const { id } = req.params;
+
   try {
     const userToDelete = await User.findById(id);
-    if (!userToDelete) return res.status(404).json({ error: 'User not found' });
-    if (userToDelete.role === 'admin') {
-        return res.status(403).json({ error: 'Cannot delete admin user' });
+
+    if (!userToDelete) {
+      return res.status(404).json({ error: 'User not found' });
     }
-    const user = await User.findByIdAndDelete(id);
-    if (!user) return res.status(404).json({ error: 'User not found' });
-    res.status(200).json({ message: 'User deleted successfully' });
+
+    if (userToDelete.role === 'admin') {
+      return res.status(403).json({ error: 'Cannot delete admin user' });
+    }
+
+    await User.findByIdAndDelete(id);
+
+  
+    const quizResult = await Quiz.deleteMany({ userId: id });     
+    const attemptResult = await Attempt.deleteMany({ userId: id });
+
+    
+
+    res.status(200).json({ message: 'User, their quizzes, and attempts deleted successfully' });
+
   } catch (err) {
+    console.error('Error deleting user:', err);  // Add this
     res.status(500).json({ error: 'Failed to delete user' });
   }
 };
 
+const updateUser = async (req, res) => {
+  const { id } = req.params;
+  const { name, email } = req.body;
 
-module.exports = { signupUser, loginUser ,getUser ,getUsers , deleteUser}; 
+  if (!name || !email) return res.status(400).json({ error: 'Name and email are required' });
+
+  try {
+    const user = await User.findById(id);
+    if (!user) return res.status(404).json({ error: 'User not found' });
+
+    user.name = name;
+    user.email = email;
+    await user.save();
+
+    res.status(200).json({ name: user.name, email: user.email });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update user' });
+  }
+};
+
+
+
+module.exports = { signupUser, loginUser ,getUser ,getUsers , deleteUser, updateUser }; 

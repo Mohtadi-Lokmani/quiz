@@ -65,20 +65,20 @@ export default function ModifyQuestion() {
   const updateQuestion = async (index) => {
     const q = questions[index];
 
-    // Validate question text
+   
     if (!q.text.trim()) {
       alert(`Question ${index + 1} cannot be empty.`);
       return;
     }
 
-    // Validate that at least one correct answer is selected
+    
     const hasCorrect = q.options.some(opt => opt.isCorrect);
     if (!hasCorrect) {
       alert(`Please select at least one correct answer for Question ${index + 1}.`);
       return;
     }
 
-    // Validate all answers are not empty
+ 
     for (const [aIndex, option] of q.options.entries()) {
       if (!option.text.trim()) {
         alert(`Answer ${aIndex + 1} in Question ${index + 1} cannot be empty.`);
@@ -147,7 +147,7 @@ export default function ModifyQuestion() {
     setQuestionBlocks(prev => prev.filter((_, i) => i !== index));
   };
 
-  // Save all new questions in bulk
+  // Save all new questions 
   const saveNewQuestions = async () => {
     try {
       for (const [qIndex, block] of questionBlocks.entries()) {

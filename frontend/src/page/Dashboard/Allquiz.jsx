@@ -35,7 +35,7 @@ export default function Quizzes() {
       try {
         setLoading(true);
         const [quizzesRes, categoriesRes] = await Promise.all([
-          fetch("http://localhost:4000/api/myquiz/", {
+          fetch("http://localhost:4000/api/quiz/", {
             headers: {'Authorization': `Bearer ${user.token}`},
           }),
           fetch("http://localhost:4000/api/categorie/", {

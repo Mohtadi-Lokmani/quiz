@@ -6,7 +6,8 @@ const{
     loginUser,
     getUser,
     getUsers,
-    deleteUser
+    deleteUser,
+    updateUser,
     
 }= require("../controllers/userController")
 
@@ -25,6 +26,9 @@ router.post('/login',loginUser)
 router.post('/signup',signupUser)
 
 router.delete('/:id', deleteUser);
+
+router.put('/:id', updateUser);
+
 
 
 

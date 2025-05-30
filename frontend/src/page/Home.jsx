@@ -11,10 +11,10 @@ function Home() {
   return (
     <>
 
-      <Hero></Hero>
-      <Work></Work>
-      <Quiz></Quiz>
-      <Create></Create>
+      <section id='a1'><Hero></Hero></section>
+      <section id='a2'><Work></Work></section>
+      <section id='a3'><Quiz></Quiz></section>
+      <section id='a4'><Create></Create></section>
       <Footer></Footer>
     </>
   )

@@ -116,6 +116,12 @@ export default function Create() {
       alert("Failed to save questions. Please try again.");
     }
   };
+  const removeQuestionBlock = (index) => {
+  const updatedBlocks = [...questionBlocks];
+  updatedBlocks.splice(index, 1);
+  setQuestionBlocks(updatedBlocks);
+};
+
 
   return (
     <div className="question-container">
@@ -131,7 +137,11 @@ export default function Create() {
       {questionBlocks.map((block, index) => (
         <div key={index} className="popup-overlay">
           <div className="popup">
-            <h3>Question {index + 1}</h3>
+           <div className="question-header">
+  <h3>Question {index + 1}</h3>
+ 
+</div>
+
             <form className="popup-form" onSubmit={(e) => e.preventDefault()}>
               <label>Question</label>
               <br />
@@ -166,9 +176,20 @@ export default function Create() {
                     }
                   />
                   <br />
+                  
                 </div>
+                
               ))}
             </form>
+             {questionBlocks.length > 1 && (
+    <button 
+      type="button" 
+      className="btn-remove" 
+      onClick={() => removeQuestionBlock(index)}
+    >
+      Remove
+    </button>
+  )}
           </div>
         </div>
       ))}

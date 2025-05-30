@@ -1,5 +1,5 @@
 .allcards {
-  margin-top: 100px;
+
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 40px;
@@ -247,6 +247,12 @@
     transform: scale(1);
   }
 }
+.category-title {
+  font-size: 1.8rem;
+  color: rgb(0, 0, 0);
+  margin: 30px 0 10px;
+}
+
 
 .card-title {
   font-size: 20px;

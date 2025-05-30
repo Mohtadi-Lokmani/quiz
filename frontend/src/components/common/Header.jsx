@@ -21,9 +21,9 @@ export default function Header() {
   return (
     <>
       <header>
-        <div className="logo">
-          <h1>QUIZZAROO</h1>
-        </div>
+         <Link to="/" className="linkquizzaroo">
+              <h2>Quizzaroo</h2>
+            </Link>
         <nav className="navheader">
           <ul>
             <CustomLink to="/" className="link">
@@ -44,7 +44,7 @@ export default function Header() {
             {user && (
               <>
               <div className="user-info">
-               <Link to="/profile"> <span className="user-name">{user.name}</span></Link>
+               <Link to="/profile" className="user_name"> <span className="user-name">{user.name}</span></Link>
                 <FontAwesomeIcon icon={faCircleUser} className="user-icon" />
                
                 </div>
