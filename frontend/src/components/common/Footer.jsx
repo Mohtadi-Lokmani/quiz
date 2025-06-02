@@ -18,22 +18,21 @@ function Footer() {
           <div className="footer-col">
             <h4>Contact us</h4>
             <ul>
-              <li><a href="#">mohtadilokmani8@gmail.com</a></li>
-              <li><a href="#"></a>eyayoussef344@gmail.com</li>
-              <li><a href="#">salmahrabi91@gmail.com</a></li>
+              <li>mohtadilokmani8@gmail.com</li>
+              <li>eyayoussef344@gmail.com</li>
+              <li>salmahrabi91@gmail.com</li>
             </ul>
           </div>
           <div className="footer-col">
             <h4>follow us</h4>
             <div className="social-links">
-				<i className="fa-brands fa-facebook" >lokmani mohtadi</i><br />
+				        <i className="fa-brands fa-facebook" >lokmani mohtadi</i><br />
                 <i className="fa-brands fa-instagram" >eya youssef</i><br />
                 <i className="fa-brands fa-linkedin" >salma hrabi</i> <br />
             </div>
           </div>
         </div>
       </div>
-    
     </footer>
     </>
   );
