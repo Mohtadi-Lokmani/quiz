@@ -43,9 +43,7 @@ export default function Dashboard() {
 
       <main className="main-content">
         <h1>Welcome, Admin</h1>
-        <p className="dashboard-description">
-          Use this panel to manage quizzes, categories, users and view messages.
-        </p>
+       
 
         <Routes>
           <Route path="quizzes" element={<AllQuizzes />} />

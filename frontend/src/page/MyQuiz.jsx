@@ -94,39 +94,48 @@ export default function Quizzes() {
   };
 
   const handleUpdate = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch(`http://localhost:4000/api/myquiz/${formData._id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.token}`
-        },
-        body: JSON.stringify(formData)
-      });
+  e.preventDefault();
 
-      if (res.ok) {
-        const updated = await res.json();
-        setQuizzes(prev => prev.map(q => q._id === updated._id ? updated : q));
-        setIsModalOpen(false);
-      } else {
-        throw new Error("Failed to update quiz");
-      }
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-  if (!user) {
-    return null; 
+  if (!user || !user.token) {
+    setError("User not authenticated.");
+    return;
   }
+
+  try {
+    const res = await fetch(`http://localhost:4000/api/myquiz/${formData._id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
+      },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      setQuizzes(prev => prev.map(q => q._id === data._id ? data : q));
+      setIsModalOpen(false);
+      setError(null);
+    } else {
+      setError(data.error || "Failed to update quiz");
+    }
+  } catch (err) {
+    setError("Server error: " + err.message);
+  }
+};
+
+if (!user) {
+  return null;
+}
+
 
   if (loading) return <div>Loading quizzes...</div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="quizzes-container">
-      <h1 className="card-title">All Quizzes</h1>
+    <div className="my-quizzes-container">
+      <h1 className="card-title">My Own Quizzes</h1>
       
       <div className="allcards">
         {quizzes.map((quiz) => (
@@ -197,6 +206,7 @@ export default function Quizzes() {
   </Link>
 )}
             </form>
+            {error && <div className="error">{error}</div>}
           </div>
         </div>
       )}

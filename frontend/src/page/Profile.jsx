@@ -87,10 +87,10 @@ export default function Profile() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to update profile");
 
-      // Update localStorage & context
       const updatedUser = { ...user, name: data.name, email: data.email };
       localStorage.setItem("user", JSON.stringify(updatedUser));
       setUpdateSuccess("Profile updated successfully.");
+       window.location.reload();
     } catch (err) {
       setUpdateError(err.message);
     }
@@ -158,12 +158,11 @@ export default function Profile() {
         </div>
       </div>
 
-      {user && user.role === 'admin' && (
-  <div className="dashboard-link">
-    <Link to="/dashboard/quizzes">Go to Dashboard</Link>
-  </div>
-)}
-
+      {user && user.role === "admin" && (
+        <div className="dashboard-link">
+          <Link to="/dashboard/quizzes">Go to Dashboard</Link>
+        </div>
+      )}
     </>
   );
 }

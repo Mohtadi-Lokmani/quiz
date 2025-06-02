@@ -90,7 +90,7 @@ export default function Play() {
 
      
       const correctAnswersCount = answers.filter(answer => answer.isCorrect).length;
-      const finalScore = correctAnswersCount * 3 * 100;
+      const finalScore = correctAnswersCount * 3 ;
 
      
       const response = await axios.post('http://localhost:4000/api/attempt', {

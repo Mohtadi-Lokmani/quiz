@@ -51,7 +51,7 @@ export default function Quizzes() {
       <h1 className="card-title">Popular Quizzes</h1>
       
       <div className="allcards">
-        {quizzes.map((quiz) => (
+        {quizzes.slice(0,5).map((quiz) => (
           <div className="card" key={quiz._id}>
             <div className="card__shine"></div>
             <div className="card__glow"></div>

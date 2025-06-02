@@ -50,6 +50,7 @@ export default function QuizAttempts() {
               <p><strong>Name:</strong> {a.userId?.name || 'Unknown User'}</p>
               <p><strong>Email:</strong> {a.userId?.email || 'N/A'}</p>
               <p><strong>Score:</strong> {a.score}%</p>
+              <p><strong>Score:</strong> {a.score}%</p>
               <p><strong>Date:</strong> {new Date(a.createdAt).toLocaleString()}</p>
             
             

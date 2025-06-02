@@ -282,7 +282,7 @@ export default function ModifyQuestion() {
             ))}
 
             {questionBlocks.length > 1 && (
-              <button className="btn-delete" onClick={() => removeNewQuestionBlock(index)}>Remove This Question</button>
+              <button className="btn-deleteee" onClick={() => removeNewQuestionBlock(index)}>Remove This Question</button>
             )}
           </div>
         </div>
