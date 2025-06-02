@@ -1,8 +1,9 @@
 const User = require("../models/userModel");
-const Quiz = require("../models/QuizModel");
+const Quiz = require("../models/quizModel");
 const Attempt = require("../models/AttemptModel");
 const jwt = require("jsonwebtoken");
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 
 //get all users
@@ -98,7 +99,12 @@ const updateUser = async (req, res) => {
   const { name, email } = req.body;
 
   if (!name || !email) return res.status(400).json({ error: 'Name and email are required' });
-
+  if (name.length < 5 || name.length > 20) {
+    return res.status(400).json({ error: 'Name must be between 5 and 20 characters' });
+  }
+  if (!validator.isEmail(email)) {
+          throw new Error('Email is not valid');
+      }
   try {
     const user = await User.findById(id);
     if (!user) return res.status(404).json({ error: 'User not found' });

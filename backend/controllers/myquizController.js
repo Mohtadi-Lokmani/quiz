@@ -31,16 +31,35 @@ const modifyMyQuiz = async (req, res) => {
     const { title, description, categorie } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ error: 'No such quiz' });
+        return res.status(400).json({ error: 'Invalid quiz ID' });
     }
 
-    const myquiz = await Quiz.findByIdAndUpdate(id, { title, description, categorie }, { new: true });
-    if (!myquiz) {
-        return res.status(404).json({ error: 'No such quiz' });
-    }
+    try {
+        const existingQuiz = await Quiz.findOne({ title });
+        const currentQuiz = await Quiz.findById(id);
 
-    res.status(200).json(myquiz);
+        if (!currentQuiz) {
+            return res.status(404).json({ error: 'No such quiz' });
+        }
+
+        if (existingQuiz && existingQuiz._id.toString() !== id) {
+            return res.status(400).json({ error: 'Title already in use' });
+        }
+
+        const updatedQuiz = await Quiz.findByIdAndUpdate(
+            id,
+            { title, description, categorie },
+            { new: true }
+        );
+
+        res.status(200).json(updatedQuiz);
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
 };
+
+
+
 
 // delete a quiz
 const deleteMyQuiz = async (req, res) => {

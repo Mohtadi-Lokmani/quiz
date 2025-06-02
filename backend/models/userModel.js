@@ -27,7 +27,7 @@ const userSchema = new Schema({
 
 
 
-// Static method for signup
+
 userSchema.statics.signup = async function (name, email, password) {
     // Validation
     if (!name || !email || !password) {
@@ -35,7 +35,7 @@ userSchema.statics.signup = async function (name, email, password) {
     }
 
     if (!validator.isLength(name, { min: 5 })) {
-        throw new Error('Name must be at least 6 characters long');
+        throw new Error('Name must be at least 5 characters long');
     }
 
     if (!validator.isEmail(email)) {
@@ -59,17 +59,14 @@ if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
     throw new Error('Password must include at least one special character.');
 }
 
-    // Check if the email is already in use
     const exists = await this.findOne({ email });
     if (exists) {
         throw new Error('Email already in use');
     }
 
-    // Hash password
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
-
-    // Create user
+  
     const user = await this.create({ name, email, password: hash });
     return user;
 };

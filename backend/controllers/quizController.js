@@ -31,6 +31,8 @@ const createQuiz = async (req, res) => {
   if (!userId) {
     return res.status(400).json({ error: "userId is required" });
   }
+  
+    
 
   try {
     const newQuiz = new Quiz({
@@ -39,6 +41,11 @@ const createQuiz = async (req, res) => {
       categorie,
       userId, 
     });
+    
+    const exists = await Quiz.findOne({ title });
+    if (exists) {
+        throw new Error('title already in use');
+    }
 
     await newQuiz.save();
     res.status(201).json(newQuiz);
